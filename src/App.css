@@ -40,3 +40,37 @@
 .read-the-docs {
   color: #888;
 }
+
+.guest-select-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.guest-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: #fffaf3;
+  border: 2px solid #c2a36b;
+  border-radius: 12px;
+
+  padding: 14px 20px;
+  font-size: 18px;
+  font-family: "Georgia", serif;
+  color: #5a4632;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235a4632'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 20px;
+}
+
+.guest-select:focus {
+  outline: none;
+  border-color: #a8884b;
+}

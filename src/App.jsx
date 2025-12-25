@@ -1,5 +1,5 @@
-import { useState } from "react";           // veľmi dôležité
-import { CLOUD_NAME, UPLOAD_PRESET } from "./cloudinary"; // správna cesta k súboru
+import { useState } from "react";
+import { CLOUD_NAME, UPLOAD_PRESET } from "./cloudinary";
 
 // Hostia
 const HOSTIA = ["Anna", "Peter", "Jana", "Martin"];
@@ -94,21 +94,26 @@ function BingoBoard({ tasks }) {
 
 // Hlavná App komponenta
 function App() {
-  const [host, setHost] = useState(null);
+  const [host, setHost] = useState("");
 
   if (!host) {
     return (
       <div style={{ padding: 20 }}>
         <h1>Vyber si svoje meno</h1>
-        {HOSTIA.map(h => (
-          <button
-            key={h}
-            onClick={() => setHost(h)}
-            style={{ display: "block", marginBottom: 10 }}
+        <div className="guest-select-wrapper">
+          <select
+            className="guest-select"
+            value={host}
+            onChange={(e) => setHost(e.target.value)}
           >
-            {h}
-          </button>
-        ))}
+            <option value="">Vyber si svoje meno</option>
+            {HOSTIA.map((h) => (
+              <option key={h} value={h}>
+                {h}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     );
   }

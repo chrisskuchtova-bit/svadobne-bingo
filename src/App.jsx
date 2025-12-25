@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { CLOUD_NAME, UPLOAD_PRESET } from "./cloudinary";
+import './App.css';
 
 // Hostia
 const HOSTIA = ["Anna", "Peter", "Jana", "Martin"];
 
-// Úlohy pre bingo
+// 25 úloh
 const TASKS = [
   "Odfot sa s nevestou",
   "Zatancuj si",
@@ -13,7 +14,24 @@ const TASKS = [
   "Urob selfie s kamarátmi",
   "Nájdite niečo modré a odfoťte sa",
   "Pochváľ sa svojím tancom",
-  "Odfot sa s dortom"
+  "Odfot sa s dortom",
+  "Objav tajnú pozvánku",
+  "Spievaj s kamarátmi",
+  "Urob srandovnú pózu",
+  "Odfot sa s kvietkom",
+  "Nájdite najlepšiu fotku",
+  "Odfot sa pri stoloch",
+  "Urob vtipnú grimasu",
+  "Spolu tancujte",
+  "Odfot sa s rodinou",
+  "Zatancuj na stole",
+  "Urob selfie s fotografom",
+  "Odfot sa pri strome",
+  "Pochváľ sa svadobným outfitom",
+  "Urob vtipnú pózu so svokrou",
+  "Odfot sa s darčekom",
+  "Urob tanečný duel",
+  "Zatancuj s nevestou"
 ];
 
 // Jedno políčko bingo
@@ -30,10 +48,7 @@ function BingoCell({ task }) {
 
     const res = await fetch(
       `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-      {
-        method: "POST",
-        body: formData
-      }
+      { method: "POST", body: formData }
     );
 
     const data = await res.json();
@@ -41,33 +56,33 @@ function BingoCell({ task }) {
   };
 
   return (
-    <div style={{
-      border: "1px solid black",
-      padding: 10,
-      textAlign: "center",
-      minHeight: 100
-    }}>
-      <p>{task}</p>
+    <div className="bingo-cell">
+      <p className="task-text">{task}</p>
+
       {!photo && (
-        <input
-          type="file"
-          accept="image/*"
-          onChange={e => handleUpload(e.target.files[0])}
-        />
+        <label className="upload-icon">
+          📷
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => handleUpload(e.target.files[0])}
+            style={{ display: "none" }}
+          />
+        </label>
       )}
+
       {photo && (
-        <div>
+        <div className="photo-menu">
           <img
             src={photo}
             alt="Fotka úlohy"
-            style={{ width: "100%", marginTop: 5, cursor: "pointer" }}
+            className="bingo-photo"
             onClick={() => setMenuVisible(!menuVisible)}
           />
           {menuVisible && (
-            <div style={{ border: "1px solid gray", padding: 5, marginTop: 5 }}>
+            <div className="photo-buttons">
               <button onClick={() => window.open(photo, "_blank")}>Zobraziť fotku</button>
               <button onClick={() => setPhoto(null)}>Zmeniť fotku</button>
-              <button onClick={() => alert(task)}>Zobraziť úlohu</button>
             </div>
           )}
         </div>
@@ -76,15 +91,10 @@ function BingoCell({ task }) {
   );
 }
 
-// Bingo mriežka
+// BingoBoard
 function BingoBoard({ tasks }) {
   return (
-    <div style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(2, 1fr)",
-      gap: 10,
-      marginTop: 20
-    }}>
+    <div className="bingo-grid">
       {tasks.map((task, index) => (
         <BingoCell key={index} task={task} />
       ))}
@@ -98,22 +108,18 @@ function App() {
 
   if (!host) {
     return (
-      <div style={{ padding: 20 }}>
+      <div className="guest-wrapper">
         <h1>Vyber si svoje meno</h1>
-        <div className="guest-select-wrapper">
-          <select
-            className="guest-select"
-            value={host}
-            onChange={(e) => setHost(e.target.value)}
-          >
-            <option value="">Vyber si svoje meno</option>
-            {HOSTIA.map((h) => (
-              <option key={h} value={h}>
-                {h}
-              </option>
-            ))}
-          </select>
-        </div>
+        <select
+          className="guest-select"
+          value={host}
+          onChange={(e) => setHost(e.target.value)}
+        >
+          <option value="">Vyber si svoje meno</option>
+          {HOSTIA.map((h) => (
+            <option key={h} value={h}>{h}</option>
+          ))}
+        </select>
       </div>
     );
   }

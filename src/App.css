@@ -1,93 +1,139 @@
-/* Hlavný wrapper */
 body {
-  font-family: "Georgia", serif;
-  background-color: #fffaf3; /* svetlé pozadie */
-  color: #800000; /* bordová farba textu */
-  margin: 0;
-  padding: 0;
+  background: #fffaf3;
+  color: #6b1d1d;
+  font-family: Georgia, serif;
 }
 
-/* Dropdown / výber hostí */
-.guest-wrapper {
-  padding: 20px;
-  text-align: center;
-}
-
-.guest-select {
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 2px solid #c2a36b;
-  background-color: #fffaf3;
-  color: #800000; /* bordový text */
-  cursor: pointer;
-}
-
-/* Bingo grid */
 .bingo-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 stĺpcov */
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  margin-top: 20px;
 }
 
-/* Jedno políčko */
 .bingo-cell {
-  aspect-ratio: 1 / 1; /* štvorcové políčko */
-  background-color: #fffaf3;
   border: 2px solid #c2a36b;
-  border-radius: 10px;
+  border-radius: 12px;
+  background: white;
+  aspect-ratio: 1 / 1;
+  padding: 8px;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-weight: bold;
-  color: #800000; /* bordový text */
-  padding: 10px;
-  cursor: pointer;
-  transition: transform 0.2s;
 }
 
-.bingo-cell:hover {
-  transform: scale(1.03);
-}
-
-/* Text úlohy */
 .task-text {
-  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 4px;
 }
 
-/* Input pre nahratie fotky */
-.bingo-cell input[type="file"] {
-  margin-top: 5px;
+.cell-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Fotka a menu po nahratí */
-.bingo-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.upload-icon {
+  font-size: 34px;
   cursor: pointer;
-  border-radius: 8px;
 }
 
-.photo-menu {
+.photo-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
+.bingo-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cell-footer {
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.cell-footer button,
+.cell-footer label {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.done {
+  font-size: 18px;
+  color: green;
+}
+
 .photo-buttons {
   position: absolute;
-  bottom: 5px;
+  bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 5px;
+  gap: 8px;
+  background: rgba(255,255,255,0.95);
+  padding: 6px 10px;
+  border-radius: 12px;
+  z-index: 10;
 }
 
-/* Nadpisy */
-h1, h2, p {
-  color: #800000; /* bordová farba */
+.photo-buttons button,
+.photo-buttons label,
+.done {
+  font-size: 20px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.done {
+  color: green;
+}
+
+/* === ÚVODNÁ OBRAZOVKA === */
+
+.guest-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+/* Elegantný svadobný nadpis */
+.guest-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 36px;
+  font-weight: 500;
+  color: #6b1d1d;
+  letter-spacing: 1px;
+}
+
+/* Väčší a krajší select */
+.guest-select {
+  font-size: 18px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 2px solid #c2a36b;
+  background: #fffaf3;
+  color: #6b1d1d;
+  cursor: pointer;
+  min-width: 220px;
+}
+
+.guest-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(194,163,107,0.3);
 }
